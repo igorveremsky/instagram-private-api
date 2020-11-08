@@ -5,13 +5,17 @@ import Bluebird = require('bluebird');
 export class SimulateService extends Repository {
   private get preLoginFlowRequests(): Array<() => any> {
     return [
-      () => this.client.account.readMsisdnHeader(),
-      () => this.client.account.msisdnHeaderBootstrap('ig_select_app'),
-      () => this.client.zr.tokenResult(),
-      () => this.client.account.contactPointPrefill('prefill'),
-      () => this.client.launcher.preLoginSync(),
+      // () => this.client.account.readMsisdnHeader(),
+      // () => this.client.account.msisdnHeaderBootstrap('ig_select_app'),
+      // () => this.client.zr.tokenResult(),
+      // () => this.client.account.contactPointPrefill('prefill'),
+      // () => this.client.launcher.preLoginSync(),
+      // () => this.client.qe.syncLoginExperiments(),
+      // () => this.client.attribution.logAttribution(),
+      // () => this.client.account.getPrefillCandidates(),
       () => this.client.qe.syncLoginExperiments(),
-      () => this.client.attribution.logAttribution(),
+      () => this.client.launcher.preLoginSync(),
+      () => this.client.account.contactPointPrefill('prefill'),
       () => this.client.account.getPrefillCandidates(),
     ];
   }
