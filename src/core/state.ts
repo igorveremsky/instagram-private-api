@@ -173,6 +173,10 @@ export class State {
     return this.extractCookieValue('ds_user');
   }
 
+  public get userSessionId() {
+    return this.extractCookieValue('sessionid');
+  }
+
   public isExperimentEnabled(experiment) {
     return this.experiments.includes(experiment);
   }
