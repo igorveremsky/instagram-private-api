@@ -26,7 +26,7 @@ export abstract class Feed<Response = any, Item = any> extends Repository {
           try {
             await retry(
               async () => {
-                const items = await this.items();
+                const items = [];
                 observer.next(items);
                 if (typeof semaphore === 'function') {
                   await semaphore();
@@ -68,9 +68,9 @@ export abstract class Feed<Response = any, Item = any> extends Repository {
 
   protected abstract set state(response: Response);
 
-  abstract async request(...args: any[]): Promise<Response>;
-
-  abstract async items(): Promise<Item[]>;
+  // abstract async request(...args: any[]): Promise<Response>;
+  //
+  // public async  items(): Promise<Item[]>;
 
   public serialize() {
     return serialize(this, { strategy: 'excludeAll' });
